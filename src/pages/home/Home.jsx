@@ -1,11 +1,11 @@
 import React from 'react'
+import Login from '../../components/login/Login'
 
 function Home() {
   return (
     <div>
-      Hola soy un home
+        <Login/>
     </div>
   )
 }
-
 export default Home
