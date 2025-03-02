@@ -1,37 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import jwtDecode from 'jwt-decode';
+
+const isAuthenticated = () => {
+  const token = localStorage.getItem('token');
+  if (!token) return false;
+
+  try {
+    const decoded = jwtDecode(token);
+    return decoded.exp * 1000 > Date.now(); // Verifica si el token aún es válido
+  } catch (error) {
+    return false;
+  }
+};
 
 const PrivateRoute = () => {
-  const token = sessionStorage.getItem('token');
+  const token = localStorage.getItem('token');
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    // Si el token existe y no se ha mostrado la alerta aún
-    if (token && !sessionStorage.getItem('alertShown')) {
+    if (isAuthenticated() && !sessionStorage.getItem('alertShown')) {
       Swal.fire({
         title: '¡Bienvenido!',
         text: 'Has iniciado sesión correctamente.',
         icon: 'success',
         confirmButtonText: 'Aceptar',
       }).then(() => {
-        // Guardamos en sessionStorage que ya se mostró la alerta
         sessionStorage.setItem('alertShown', 'true');
         setShowAlert(true);
       });
     }
-  }, [token]); // Solo se ejecuta cuando el token cambia
+  }, [token]);
 
-  if (!token) {
+  if (!isAuthenticated()) {
     return <Navigate to="/login" />;
   }
 
-  // Si no se ha mostrado la alerta, permitimos que el contenido se muestre
-  if (showAlert) {
-    return <Outlet />;
-  }
-
-  return <></>;
+  return showAlert ? <Outlet /> : null;
 };
 
 export default PrivateRoute;
+

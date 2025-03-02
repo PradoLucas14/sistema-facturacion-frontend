@@ -3,7 +3,7 @@ import React from 'react'
 function Users() {
   return (
     <div>
-      hola soy usuarios
+      hola soy la pantalla de usuarios.
     </div>
   )
 }
