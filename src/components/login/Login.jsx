@@ -40,10 +40,11 @@ const Login = () => {
                         boxShadow: 3,
                     }}
                 >
+
                     {/* Titulo */}
                     <Box sx={{ textAlign: "center", marginBottom: "30px" }}>
                         {/* Icono sobre el texto */}
-                        <FontAwesomeIcon icon={faCircleUser} size="3x" style={{ color: "#ff3366" }} />
+                        <FontAwesomeIcon icon={faCircleUser} size="5x" style={{ color: "#ff3366" }} />
                         <Typography
                             variant="h4"
                             gutterBottom
@@ -80,14 +81,14 @@ const Login = () => {
                                     color: "#ff3366", // Color rosa para el texto dentro del input
                                     '& fieldset': {
                                         borderColor: "#ff3366", // Borde rosa
-                                        borderWidth: 2, // Borde más grueso por defecto
+                                        borderWidth: 1, // Borde más grueso por defecto
                                     },
                                     '&:hover fieldset': {
                                         borderColor: "#ff0033", // Borde rosa más oscuro al hacer hover
                                     },
                                     '&.Mui-focused fieldset': {
                                         borderColor: "#ff0033", // Borde rosa más oscuro al hacer foco
-                                        borderWidth: 3, // Borde más grueso al hacer foco
+                                        borderWidth: 2, // Borde más grueso al hacer foco
                                     },
                                 },
                                 '& .MuiInputBase-input': {
@@ -116,14 +117,14 @@ const Login = () => {
                                     color: "#ff3366", // Color rosa para el texto dentro del input
                                     '& fieldset': {
                                         borderColor: "#ff3366", // Borde rosa
-                                        borderWidth: 2, // Borde más grueso por defecto
+                                        borderWidth: 1, // Borde más grueso por defecto
                                     },
                                     '&:hover fieldset': {
                                         borderColor: "#ff0033", // Borde rosa más oscuro al hacer hover
                                     },
                                     '&.Mui-focused fieldset': {
                                         borderColor: "#ff0033", // Borde rosa más oscuro al hacer foco
-                                        borderWidth: 3, // Borde más grueso al hacer foco
+                                        borderWidth: 2, // Borde más grueso al hacer foco
                                     },
                                 },
                                 '& .MuiInputBase-input': {
