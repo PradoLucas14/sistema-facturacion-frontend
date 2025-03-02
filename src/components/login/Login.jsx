@@ -1,3 +1,5 @@
+// src/components/Login.jsx
+
 import React, { useState } from "react";
 import { TextField, Button, Container, Typography, Alert, Box } from "@mui/material";
 
@@ -29,84 +31,98 @@ const Login = () => {
             }}
         >
             <Container maxWidth="xs" sx={{ paddingTop: "50px" }}>
-                {/* Contenedor del formulario con fondo sólido */}
-                <Box
+                {/* Titulo */}
+                <Typography
+                    variant="h4"
+                    gutterBottom
+                    textAlign="center"
                     sx={{
-                        backgroundColor: "#fff", // Fondo blanco sólido para el formulario
-                        padding: 3,
-                        borderRadius: 2,
-                        boxShadow: 3,
+                        color: "#fff",
+                        fontFamily: "Roboto, sans-serif",
+                        fontWeight: "bold",
                     }}
                 >
-                    {/* Titulo */}
-                    <Typography
-                        variant="h4"
-                        gutterBottom
-                        textAlign="center"
+                    Iniciar Sesión
+                </Typography>
+
+                {/* Alerta de error */}
+                {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+
+                {/* Formulario de login */}
+                <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                    {/* Campo de email */}
+                    <TextField
+                        label="Correo Electrónico"
+                        variant="outlined"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        fullWidth
+                        type="email"
                         sx={{
-                            color: "#ff3366", // Color rosa para el título
-                            fontFamily: "Roboto, sans-serif",
-                            fontWeight: "bold",
+                            backgroundColor: "#fff",
+                            '& .MuiOutlinedInput-root': {
+                                color: "#333", // Texto en negro
+                            },
+                            '& .MuiInputLabel-root': {
+                                color: "#ff3366", // Color rosa para el label
+                            },
+                            '& .MuiOutlinedInput-notchedOutline': {
+                                borderColor: "#ff3366", // Borde rosa para el input
+                            },
+                            '& .MuiInputBase-input': {
+                                color: "#ff3366", // Color rosa para el texto dentro del input
+                            },
+                            '& .MuiInputBase-input::placeholder': {
+                                color: "#ff3366", // Color rosa para el placeholder
+                            },
+                        }}
+                    />
+
+                    {/* Campo de contraseña */}
+                    <TextField
+                        label="Contraseña"
+                        variant="outlined"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        fullWidth
+                        type="password"
+                        sx={{
+                            backgroundColor: "#fff",
+                            '& .MuiOutlinedInput-root': {
+                                color: "#333", // Texto en negro
+                            },
+                            '& .MuiInputLabel-root': {
+                                color: "#ff3366", // Color rosa para el label
+                            },
+                            '& .MuiOutlinedInput-notchedOutline': {
+                                borderColor: "#ff3366", // Borde rosa para el input
+                            },
+                            '& .MuiInputBase-input': {
+                                color: "#ff3366", // Color rosa para el texto dentro del input
+                            },
+                            '& .MuiInputBase-input::placeholder': {
+                                color: "#ff3366", // Color rosa para el placeholder
+                            },
+                        }}
+                    />
+
+                    {/* Botón de inicio de sesión */}
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleLogin}
+                        fullWidth
+                        sx={{
+                            marginTop: 2,
+                            backgroundColor: "#ff3366", // Rosa oscuro
+                            color: "#fff", // Texto blanco
+                            '&:hover': {
+                                backgroundColor: "#ff0033", // Rosa más oscuro al hacer hover
+                            },
                         }}
                     >
                         Iniciar Sesión
-                    </Typography>
-
-                    {/* Alerta de error */}
-                    {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-
-                    {/* Formulario de login */}
-                    <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                        {/* Campo de email */}
-                        <TextField
-                            label="Correo Electrónico"
-                            variant="outlined"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            fullWidth
-                            type="email"
-                            sx={{
-                                backgroundColor: "#fff",
-                                '& .MuiOutlinedInput-root': {
-                                    color: "#333", // Texto en negro
-                                },
-                            }}
-                        />
-
-                        {/* Campo de contraseña */}
-                        <TextField
-                            label="Contraseña"
-                            variant="outlined"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            fullWidth
-                            type="password"
-                            sx={{
-                                backgroundColor: "#fff",
-                                '& .MuiOutlinedInput-root': {
-                                    color: "#333", // Texto en negro
-                                },
-                            }}
-                        />
-
-                        {/* Botón de inicio de sesión */}
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleLogin}
-                            fullWidth
-                            sx={{
-                                marginTop: 2,
-                                backgroundColor: "#ff3366", // Rosa oscuro
-                                color: "#fff", // Texto blanco
-                                '&:hover': {
-                                    backgroundColor: "#ff0033", // Rosa más oscuro al hacer hover
-                                },
-                            }}
-                        >
-                            Iniciar Sesión
-                        </Button>
-                    </Box>
+                    </Button>
                 </Box>
             </Container>
         </Box>
