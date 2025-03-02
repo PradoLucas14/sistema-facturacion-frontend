@@ -37,8 +37,12 @@ const Login = () => {
                 // Mostrar el contenido de sessionStorage
                 console.log('sessionStorage:', sessionStorage);
     
+                // Limpiar el formulario
+                setEmail("");
+                setPassword("");
+    
                 // Redirigir a la página de inicio o dashboard
-                navigate('/home'); // Asegúrate de tener la ruta '/home' configurada en tu router
+                navigate('/users'); // Asegúrate de tener la ruta '/home' configurada en tu router
             }
         } catch (error) {
             // Si ocurre un error, mostrar mensaje de error
