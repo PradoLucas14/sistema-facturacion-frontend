@@ -2,24 +2,50 @@ import React, { useState } from "react";
 import { TextField, Button, Container, Typography, Alert, Box } from "@mui/material";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'; // Importando el ícono
+import { useNavigate } from 'react-router-dom'; // Importando useNavigate para redirigir
+import axios from 'axios'; // Importando axios para hacer peticiones HTTP
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate(); // Inicializando useNavigate
 
     // Manejo del evento de login
-    const handleLogin = () => {
+    const handleLogin = async () => {
         // Validación de los campos de entrada
         if (!email || !password) {
             setErrorMessage("Por favor ingrese ambos campos");
             return;
         }
-        // Aquí iría la lógica para la autenticación (por ahora solo muestra una alerta)
-        console.log("Iniciando sesión con", email, password);
-        setErrorMessage("");
-    };
-
+    
+        try {
+            // Realizando la autenticación, supongamos que tu backend está en localhost:5000
+            const response = await axios.post('http://localhost:3001/api/users/login', {
+                email,
+                password
+            });
+    
+            // Si la respuesta es exitosa, redirigir al usuario
+            if (response.status === 200) {
+                console.log("Login exitoso", response.data);
+    
+                // Guardar el nombre del usuario y el token en sessionStorage
+                sessionStorage.setItem('username', response.data.name);  // Guardamos el nombre
+                sessionStorage.setItem('token', response.data.token);      // Guardamos el token
+    
+                // Mostrar el contenido de sessionStorage
+                console.log('sessionStorage:', sessionStorage);
+    
+                // Redirigir a la página de inicio o dashboard
+                navigate('/home'); // Asegúrate de tener la ruta '/home' configurada en tu router
+            }
+        } catch (error) {
+            // Si ocurre un error, mostrar mensaje de error
+            setErrorMessage("Credenciales incorrectas, por favor intente nuevamente.");
+        }
+    };    
+    
     return (
         <Box
             sx={{
@@ -59,9 +85,6 @@ const Login = () => {
                         </Typography>
                     </Box>
 
-                    {/* Alerta de error */}
-                    {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
-
                     {/* Formulario de login */}
                     <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                         {/* Campo de email */}
@@ -71,6 +94,7 @@ const Login = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             fullWidth
+                            autoComplete="off"
                             type="email"
                             sx={{
                                 backgroundColor: "#fff",
