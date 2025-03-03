@@ -1,12 +1,11 @@
 import React from 'react'
 
-function Users() {
+function Sales() {
   return (
     <div>
-      soy usuarios
+      soy ventas
     </div>
   )
 }
 
-export default Users
-
+export default Sales

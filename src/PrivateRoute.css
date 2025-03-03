@@ -1,0 +1,18 @@
+.custom-swal-popup {
+    background-color: #ffebf0; /* Fondo rosa claro */
+    border: 2px solid #ff66a3; /* Borde rosa fuerte */
+  }
+  
+  .custom-swal-title {
+    color: #d63384; /* Título en rosa oscuro */
+  }
+  
+  .custom-swal-button {
+    background-color: #ff66a3 !important; /* Botón rosa */
+    color: white !important;
+  }
+  
+  .custom-swal-button:hover {
+    background-color: #d63384 !important; /* Cambio de color al pasar el mouse */
+  }
+  
